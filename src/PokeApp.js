@@ -1,33 +1,24 @@
-import React, { useState, useEffect } from 'react';
-import { getPokemons } from "./helpers/getPokemons";
-import { PokemonItem } from "./components/PokemonItem";
+import React, { useEffect, useReducer } from 'react';
+import { AppRouter } from "./router/AppRouter";
+import { AuthContext } from "./context/AuthContext";
+import { authReducer } from "./reducers/authReducer";
+
+const init = () => {
+	return JSON.parse(localStorage.getItem('user')) || { logged: false };
+};
 
 export function PokeApp() {
-	const [ pokemons, setPokemons ] = useState({
-		data: null,
-		loading: true
-	});
+	const [ user, dispatch ] = useReducer(authReducer, {}, init);
 	
 	useEffect(() => {
-		getPokemons(5).then(r => {
-			setPokemons({
-				data: r,
-				loading: false
-			});
-		});
-	}, []);
+		localStorage.setItem('user', JSON.stringify(user));
+	}, [ user ]);
 	
 	return (
-		<>
-			<h1>PokeApp</h1>
-			{/*@formatter:off*/}
-			{
-				pokemons.loading && <div className="loader loader-pokeball is-active"></div>
-			}
-			{
-				pokemons.data && pokemons.data.map(pokemon => ( <PokemonItem key={ pokemon.id } { ...pokemon } /> ))
-			}
-			{/*@formatter:on*/ }
-		</>
+		// @formatter:off
+		<AuthContext.Provider value={ {user, dispatch} }>
+			<AppRouter />
+		</AuthContext.Provider>
+		// @formatter:on
 	);
 }
