@@ -1,4 +1,5 @@
 @import './components/dots.css';
+@import './components/search.css';
 
 @tailwind base;
 @tailwind components;

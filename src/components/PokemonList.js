@@ -1,33 +1,72 @@
 import React, { useEffect, useState } from 'react';
 import { PokemonItem } from "./PokemonItem";
-import { getPokemons } from "../helpers/getPokemons";
+import { getPokemonByName } from "../helpers/getPokemonByName";
+import { InformationCircleIcon, SearchIcon } from "@heroicons/react/outline";
 
-export function PokemonList() {
-	const [ pokemons, setPokemons ] = useState({
+export function PokemonList({ pokeName }) {
+	console.log('PokemonList renderizándose');
+	
+	const [ loader, setLoader ]                              = useState(false);
+	const [ { data: pokemon, loading, error }, setPokemons ] = useState({
 		data: null,
-		loading: true
+		loading: true,
+		error: false
 	});
 	
 	useEffect(() => {
-		getPokemons(10).then(r => {
-			setPokemons({
-				data: r,
-				loading: false
+		
+		if (pokeName.length > 0) {
+			setLoader(true);
+			getPokemonByName(pokeName).then(res => {
+				setPokemons({
+					data: res,
+					loading: false,
+					error: false
+				});
+				setLoader(false);
+			}).catch(() => {
+				setPokemons({
+					data: null,
+					loading: true,
+					error: true
+				});
+				setLoader(false);
 			});
-		});
-	}, []);
+			
+		}
+	}, [ pokeName ]);
 	
 	return (
 		<>
 			{/*@formatter:off*/}
 			{
-				pokemons.loading && <div className="loader loader-pokeball is-active"></div>
+				(loading && !error) && (
+					<div className="flex items-center gap-2 text-gray-500">
+						<span>Empieza a buscar un pokemon</span>
+						<SearchIcon className="h-5" />
+					</div>
+				)
 			}
-			<ul className="grid grid-cols-1 justify-items-center sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
-				{
-					pokemons.data && pokemons.data.map(pokemon => ( <PokemonItem key={ pokemon.id } { ...pokemon }  /> ))
-				}
-			</ul>
+			{
+				loader && <div className="loader loader-pokeball is-active"></div>
+			}
+			{
+				(error && loading) && (
+					<div className="flex items-center justify-center gap-2 p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg" role="alert">
+						<InformationCircleIcon className="h-5"/>
+						<span className="font-medium">Pokemon not searching</span>
+					</div>
+				)
+			}
+			{
+				(!loading && !error)  && (
+					<ul className="grid grid-cols-1 justify-items-center sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
+						{
+							pokemon.map(pokeItem => ( <PokemonItem key={ pokeItem.id } { ...pokeItem }  /> ))
+						}
+					</ul>
+				)
+			}
 			{/*@formatter:on*/ }
 		</>
 	);

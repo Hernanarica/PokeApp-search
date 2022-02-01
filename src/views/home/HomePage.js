@@ -1,5 +1,4 @@
 import React from 'react';
-import { PokemonList } from "../../components/PokemonList";
 import { Hero } from "../../components/home/Hero";
 
 export function HomePage() {
@@ -193,7 +192,6 @@ export function HomePage() {
 						</ol>
 					</div>
 				</div>
-				<PokemonList />
 			</div>
 		</>
 	);
