@@ -1,6 +1,7 @@
 import React from 'react';
 import { useFetch } from "../../hooks/useFetch";
 import { getPokemons } from "../../helpers/getPokemons";
+import { getAllPokemon } from "../../helpers/getAllPokemon";
 
 function SearchByTypes({ setPokemons, setLoader }) {
 	const { data: categories } = useFetch('https://pokeapi.co/api/v2/type/');
@@ -28,9 +29,32 @@ function SearchByTypes({ setPokemons, setLoader }) {
 		
 	};
 	
+	const handleGetAll = () => {
+		setLoader(true);
+		getAllPokemon('https://pokeapi.co/api/v2/pokemon?limit=15').then(r => {
+			setPokemons({
+				data: r,
+				hasPaginator: true,
+				error: false
+			});
+		}).catch(() => {
+			setPokemons({
+				data: [],
+				hasPaginator: false,
+				error: true
+			});
+		}).finally(() => {
+			setLoader(false);
+		});
+	};
+	
 	return (
 		<div className="w-full flex justify-center">
 			<div className="inline-flex gap-2 max-w-xl p-1 rounded-full overflow-x-scroll" id="search-type">
+				<button type="button" onClick={ handleGetAll }
+				        className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center">
+					All
+				</button>
 				{
 					categories.map((category, i) => (
 						<button type="button" key={ category } onClick={ handleSelectType }

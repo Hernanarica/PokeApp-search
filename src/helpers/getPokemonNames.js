@@ -1,11 +1,6 @@
-import { getPokemonOnlyName } from "./getPokemonOnlyName";
-
-export async function getPokemonNames(url) {
-	let pokemons = [];
+export async function getPokemonNames() {
+	const fetchData   = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=1118`);
+	const { results } = await fetchData.json();
 	
-	for (let i = 1; i <= 150; i++) {
-		pokemons = [ ...pokemons, ...await getPokemonOnlyName(i) ];
-	}
-	
-	return pokemons;
+	return results.map(pokemon => ({ name: pokemon.name }));
 }
