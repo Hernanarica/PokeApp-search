@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { SearchIcon } from "@heroicons/react/outline";
 import { useForm } from "../../hooks/useForm";
 import { getPokemonNames } from "../../helpers/getPokemonNames";
+import { getPokemonByName } from "../../helpers/getPokemonByName";
 
-export function Search({ setPokeName }) {
-	console.log('Search renderizándose');
+function Search({ setPokeName }) {
 	const [ pokemonNames, setPokemonNames ] = useState([]);
 	
 	useEffect(() => {
@@ -25,7 +25,11 @@ export function Search({ setPokeName }) {
 		
 		if (!name.trim().length > 0) return;
 		
-		setPokeName(name);
+		getPokemonByName(name).then(res => {
+			setPokeName(res);
+		}).catch(e => {
+			console.log('No existe el pokemon :(');
+		});
 		
 		cleanForm();
 	};
@@ -58,3 +62,5 @@ export function Search({ setPokeName }) {
 		// @formatter:on
 	);
 }
+
+export default React.memo(Search);
