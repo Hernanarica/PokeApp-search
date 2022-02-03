@@ -2,16 +2,28 @@ import React from 'react';
 import { useFetch } from "../../hooks/useFetch";
 import { getPokemons } from "../../helpers/getPokemons";
 
-function SearchByTypes({ setPokeName }) {
+function SearchByTypes({ setPokemons, setLoader }) {
 	const { data: categories } = useFetch('https://pokeapi.co/api/v2/type/');
 	
 	const handleSelectType = e => {
 		e.preventDefault();
+		
+		setLoader(true);
+		
 		const name = e.target.textContent;
 		
 		getPokemons(150).then(r => {
 			const pokemonByTypeFilter = r.filter(poke => poke.types.includes(name));
-			setPokeName(pokemonByTypeFilter);
+			setPokemons({
+				data: pokemonByTypeFilter,
+				error: false
+			});
+			setLoader(false);
+		}).catch(() => {
+			setPokemons({
+				data: [],
+				error: true
+			});
 		});
 		
 	};

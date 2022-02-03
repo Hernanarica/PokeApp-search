@@ -4,7 +4,7 @@ import { useForm } from "../../hooks/useForm";
 import { getPokemonNames } from "../../helpers/getPokemonNames";
 import { getPokemonByName } from "../../helpers/getPokemonByName";
 
-function Search({ setPokeName }) {
+function Search({ setPokemons, setLoader }) {
 	const [ pokemonNames, setPokemonNames ] = useState([]);
 	
 	useEffect(() => {
@@ -25,10 +25,20 @@ function Search({ setPokeName }) {
 		
 		if (!name.trim().length > 0) return;
 		
+		setLoader(true);
+		
 		getPokemonByName(name).then(res => {
-			setPokeName(res);
+			setPokemons({
+				data: res,
+				error: false
+			});
 		}).catch(e => {
-			console.log('No existe el pokemon :(');
+			setPokemons({
+				data: [],
+				error: true
+			});
+		}).finally(() => {
+			setLoader(false);
 		});
 		
 		cleanForm();
