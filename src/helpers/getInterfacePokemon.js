@@ -1,7 +1,4 @@
-export async function getPokemon(id) {
-	const fetchData = await fetch(`https://pokeapi.co/api/v2/pokemon/${ id }`);
-	const data      = [ await fetchData.json() ];
-	
+export function getInterfacePokemon(data) {
 	return data.map(pokemon => {
 		return {
 			id: pokemon.id,

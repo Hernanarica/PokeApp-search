@@ -1,5 +1,8 @@
 @import './components/dots.css';
 @import './components/search.css';
+@import './components/badge.css';
+@import './components/grid-pokemons.css';
+@import './components/pokemon-card.css';
 
 @tailwind base;
 @tailwind components;

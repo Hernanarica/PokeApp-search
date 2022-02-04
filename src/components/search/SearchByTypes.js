@@ -1,7 +1,7 @@
 import React from 'react';
 import { useFetch } from "../../hooks/useFetch";
-import { getPokemons } from "../../helpers/getPokemons";
-import { getAllPokemon } from "../../helpers/getAllPokemon";
+import { getAllPokemons } from "../../helpers/getAllPokemons";
+import { getAllPaginationPokemons } from "../../helpers/getAllPaginationPokemons";
 
 function SearchByTypes({ setPokemons, setLoader }) {
 	const { data: categories } = useFetch('https://pokeapi.co/api/v2/type/');
@@ -13,7 +13,7 @@ function SearchByTypes({ setPokemons, setLoader }) {
 		
 		const name = e.target.textContent;
 		
-		getPokemons(150).then(r => {
+		getAllPokemons(150).then(r => {
 			const pokemonByTypeFilter = r.filter(poke => poke.types.includes(name));
 			setPokemons({
 				data: pokemonByTypeFilter,
@@ -31,7 +31,7 @@ function SearchByTypes({ setPokemons, setLoader }) {
 	
 	const handleGetAll = () => {
 		setLoader(true);
-		getAllPokemon('https://pokeapi.co/api/v2/pokemon?limit=15').then(r => {
+		getAllPaginationPokemons().then(r => {
 			setPokemons({
 				data: r,
 				hasPaginator: true,

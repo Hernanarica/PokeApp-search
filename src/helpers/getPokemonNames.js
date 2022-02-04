@@ -1,6 +1,7 @@
-export async function getPokemonNames() {
-	const fetchData   = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=1118`);
-	const { results } = await fetchData.json();
+import { getPokemonsByLimit } from "./getPokemonsByLimit";
+
+export async function getPokemonNames(limit = 1118) {
+	const results = await getPokemonsByLimit(limit);
 	
 	return results.map(pokemon => ({ name: pokemon.name }));
 }

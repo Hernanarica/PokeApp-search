@@ -6,7 +6,7 @@ function PokemonList({ pokemons }) {
 		<>
 			{/*@formatter:off*/}
 			{
-				<ul className="grid grid-cols-1 justify-items-center sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
+				<ul className="grid-pokemons">
 					{
 						pokemons.map(pokeItem => ( <PokemonItem key={ pokeItem.id } { ...pokeItem }  /> ))
 					}

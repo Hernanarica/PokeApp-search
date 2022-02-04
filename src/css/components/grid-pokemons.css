@@ -1,0 +1,7 @@
+.grid-pokemons {
+	display: grid;
+	grid-template: repeat(3, 1fr) / repeat(auto-fill, minmax(200px, 1fr));
+	gap: 3.125rem;
+	inline-size: 100%;
+	justify-items: center;
+}
