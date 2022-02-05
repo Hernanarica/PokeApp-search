@@ -5,9 +5,9 @@ export function HomePage() {
 	return (
 		<>
 			<Hero />
-			<div className="p-2 md:p-4">
+			<div className="p-6 md:p-4 max-w-7xl mx-auto">
 				<h2 className="text-2xl font-medium mb-6">Ligas y medallas</h2>
-				<div className="flex justify-around">
+				<div className="flex justify-start sm:justify-between flex-wrap">
 					<div>
 						<h3 className="text-sm font-medium mb-6 bg-blue-200 text-blue-600 rounded-lg w-fit px-3 py-1">Kanto</h3>
 						<ol className="relative border-l border-gray-200">

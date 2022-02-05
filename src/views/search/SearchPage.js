@@ -58,7 +58,7 @@ export function SearchPage() {
 	
 	return (
 		// @formatter:off
-		<div className="min-h-screen p-2 md:p-4 flex flex-col gap-12">
+		<div className="max-w-7xl mx-auto min-h-screen p-2 md:p-4 flex flex-col gap-12">
 			{/*Form*/ }
 			<Search setPokemons={ setPokemons } setLoader={ setLoader } />
 			{/*Form*/ }
