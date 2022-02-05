@@ -1,4 +1,5 @@
 import React from 'react';
+import { IMAGES_PATH } from "../../constants/imagesPath";
 
 export function Hero() {
 	return (
@@ -39,7 +40,7 @@ export function Hero() {
 				</div>
 			</div>
 			<div className="hidden lg:block lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
-				<img className="h-56 w-full object-contain sm:h-72 md:h-96 lg:w-full lg:h-full" src="./img/pokemon-image.jpg" alt="Pokebola" />
+				<img className="h-56 w-full object-contain sm:h-72 md:h-96 lg:w-full lg:h-full" src={ IMAGES_PATH('./pokemon-image.jpg') } alt="Pokebola" />
 			</div>
 		</div>
 	
