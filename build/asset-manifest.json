@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Hernanarica/PokeApp-search/static/css/main.02e01e84.css",
+    "main.js": "/Hernanarica/PokeApp-search/static/js/main.2be769ca.js",
+    "index.html": "/Hernanarica/PokeApp-search/index.html",
+    "main.02e01e84.css.map": "/Hernanarica/PokeApp-search/static/css/main.02e01e84.css.map",
+    "main.2be769ca.js.map": "/Hernanarica/PokeApp-search/static/js/main.2be769ca.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.02e01e84.css",
+    "static/js/main.2be769ca.js"
+  ]
+}
