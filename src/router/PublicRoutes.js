@@ -1,10 +1,9 @@
 import React, { useContext } from 'react';
 import { Navigate } from 'react-router-dom';
 import { AuthContext } from "../context/AuthContext";
-import { LoginPage } from "../views/login/LoginPage";
 
-export function PublicRoutes() {
+export function PublicRoutes({ children }) {
 	const { user } = useContext(AuthContext);
 	
-	return (user.logged) ? <Navigate to="/" /> : <LoginPage />;
+	return (user.logged) ? <Navigate to="/" /> : children;
 }

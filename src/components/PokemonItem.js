@@ -1,12 +1,12 @@
 import React from 'react';
-import { EyeIcon } from "@heroicons/react/outline";
 import { Badge } from "./utilities/Badge";
 import { typePokemon } from "../types/typePokemon";
+import { Link } from "react-router-dom";
 
-function PokemonItem({ name, image, alt, types }) {
+function PokemonItem({ id, name, image, alt, types }) {
 	
 	return (
-		<li className="pokemon-card relative animate__animated animate__fadeIn">
+		<Link to={ `/pokemon/${ id }` } className="pokemon-card relative animate__animated animate__fadeIn">
 			<div className="pokemon-card__wrapper p-2 rounded-lg border border-gray-200 shadow-md" style={ { background: typePokemon[types[0]] } }>
 				<div className="pokemon-card__info">
 					<img className="absolute pokemon-card__image -top-4 -right-4 w-24 h-24 object-contain" src={ image } alt={ alt } />
@@ -18,7 +18,7 @@ function PokemonItem({ name, image, alt, types }) {
 					</div>
 				</div>
 			</div>
-		</li>
+		</Link>
 	);
 }
 

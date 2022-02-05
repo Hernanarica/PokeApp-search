@@ -3,6 +3,7 @@
 @import './components/badge.css';
 @import './components/grid-pokemons.css';
 @import './components/pokemon-card.css';
+@import './components/detail-item.css';
 
 @tailwind base;
 @tailwind components;

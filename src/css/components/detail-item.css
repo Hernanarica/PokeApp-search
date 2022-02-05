@@ -1,0 +1,35 @@
+.detail-item {
+	display: flex;
+	flex-direction: column;
+	max-inline-size: 300px;
+	max-block-size: 400px;
+	inline-size: 100%;
+	block-size: 100%;
+}
+
+.detail-item__container-1 {
+	flex: 2;
+}
+
+.detail-item__container-2 {
+	flex: 4;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.detail-item__container-3 {
+	flex: 1;
+}
+
+.detail-item__container-3 {
+	display: flex;
+}
+
+.detail-item__stat {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
