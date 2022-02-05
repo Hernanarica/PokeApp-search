@@ -1,7 +1,8 @@
-import React, { useContext, useReducer } from 'react';
+import React, { useContext } from 'react';
 import { KeyIcon, MailIcon } from "@heroicons/react/outline";
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from "../../context/AuthContext";
+import { IMAGES_PATH } from "../../constants/imagesPath";
 
 export function LoginPage() {
 	const navigate     = useNavigate();
@@ -26,7 +27,7 @@ export function LoginPage() {
 	return (
 		<div className="min-h-screen flex justify-center items-center gap-12 px-2 md:p-0">
 			<div className="hidden lg:block w-2/6">
-				<img src="./img/pikachu.png" alt="pikachu" className="object-cover w-72" />
+				<img src={ IMAGES_PATH('./pikachu.png') } alt="pikachu" className="object-cover w-72" />
 			</div>
 			<form action="#" method="post" className="lg:w-4/6 max-w-md w-full space-y-10" onSubmit={ handleSubmit }>
 				<div className="space-y-8">

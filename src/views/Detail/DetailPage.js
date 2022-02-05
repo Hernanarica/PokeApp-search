@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import { getPokemonDetailByID } from "../../helpers/getPokemonDetailByID";
 import { typePokemon } from "../../types/typePokemon";
 import { DetailItem } from "../../components/detail/DetailItem";
-import { ChevronLeftIcon } from "@heroicons/react/outline";
 import { ReturnButton } from "../../components/utilities/ReturnButton";
 
 export function DetailPage() {
@@ -27,7 +26,7 @@ export function DetailPage() {
 			
 			setLoader(false);
 		});
-	}, []);
+	}, [ id_pokemon ]);
 	
 	return (
 		// @formatter:off

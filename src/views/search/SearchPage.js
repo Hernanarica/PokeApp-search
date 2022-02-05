@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import PokemonList from "../../components/PokemonList";
 import SearchByTypes from "../../components/search/SearchByTypes";
 import Search from "../../components/search/Search";
-import { InformationCircleIcon, SearchIcon } from "@heroicons/react/solid";
+import { InformationCircleIcon } from "@heroicons/react/solid";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/outline";
 import { getNextPokemon } from "../../helpers/getNextPokemon";
 

@@ -21,9 +21,7 @@
 		"start": "react-scripts start",
 		"build": "react-scripts build",
 		"test": "react-scripts test",
-		"eject": "react-scripts eject",
-		"predeploy": "npm run build",
-		"deploy": "gh-pages -d build"
+		"eject": "react-scripts eject"
 	},
 	"eslintConfig": {
 		"extends": [
@@ -47,6 +45,5 @@
 		"autoprefixer": "^10.4.2",
 		"postcss": "^8.4.5",
 		"tailwindcss": "^3.0.18"
-	},
-	"homepage": "https://github.com/Hernanarica/PokeApp-search"
+	}
 }
