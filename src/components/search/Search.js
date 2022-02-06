@@ -3,9 +3,18 @@ import { SearchIcon } from "@heroicons/react/outline";
 import { useForm } from "../../hooks/useForm";
 import { getPokemonNames } from "../../helpers/getPokemonNames";
 import { getPokemonByName } from "../../helpers/getPokemonByName";
+import { useLocation, useNavigate } from "react-router-dom";
+import queryString from 'query-string';
 
 function Search({ setPokemons, setLoader }) {
-	const [ pokemonNames, setPokemonNames ] = useState([]);
+	const [ pokemonNames, setPokemonNames ]            = useState([]);
+	const navigate                                     = useNavigate();
+	const location                                     = useLocation();
+	const { s = '' }                                   = queryString.parse(location.search);
+	const [ formValues, handleInputChange, cleanForm ] = useForm({
+		name: s
+	});
+	const { name }                                     = formValues;
 	
 	useEffect(() => {
 		getPokemonNames().then(res => {
@@ -14,16 +23,12 @@ function Search({ setPokemons, setLoader }) {
 	}, []);
 	
 	
-	const [ formValues, handleInputChange, cleanForm ] = useForm({
-		name: ''
-	});
-	
-	const { name } = formValues;
-	
 	const handleSubmit = e => {
 		e.preventDefault();
 		
 		if (!name.trim().length > 0) return;
+		
+		navigate(`?s=${ name }`); // Agregamos un parámetro a la url
 		
 		setLoader(true);
 		
